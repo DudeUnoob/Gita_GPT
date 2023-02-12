@@ -4,6 +4,7 @@ import './App.css'
 import { BrowserRouter, Route, Routes, Router} from "react-router-dom"
 import Home from './pages/Home'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navigation from './components/Navbar'
 
 
 function App() {
@@ -11,8 +12,9 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Navigation />
       <Routes>
-        <Route element={<Home />} path="/"></Route>
+        <Route element={<Home />} exact path="/"></Route>
       </Routes>
     </BrowserRouter>
   )
