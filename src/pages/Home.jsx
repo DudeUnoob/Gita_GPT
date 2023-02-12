@@ -81,7 +81,7 @@ export default function Home() {
                             <span className='visually-hidden'>Loading...</span>
                         </Spinner>
                     </div>
-                    <p><b>{messageValue?.answer}</b></p>
+                    <p id="answer_result"><b>{messageValue?.answer}</b></p>
                 </div>
                 <br />
                 <br />
