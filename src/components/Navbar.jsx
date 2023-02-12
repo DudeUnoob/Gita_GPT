@@ -1,19 +1,23 @@
 import  { useState, useEffect, createContext, useContext } from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import img from "../../public/gita_gpt.png"
+import { ThemeContext, ThemeProvider, useTheme, useThemeUpdate } from './ThemeContext';
 
 export default function Navigation () {
-
-    const [theme, setTheme] = useState("light")
-    const handleTheme = () => {
-      return theme == "light" ? setTheme("dark") : setTheme("light")
-    }
+    const darkTheme = useTheme()
+    const toggleTheme = useThemeUpdate()
+    // const [theme, setTheme] = useState("light")
+    // const handleTheme = () => {
+    //   return theme == "light" ? setTheme("dark") : setTheme("light")
+    // }
+    
 
     return (
         <>
         {/* bg="dark" variant="dark" */}
-        <Navbar className='navbar_render' bg={theme} variant={theme}>
-        <Container>
+        
+        <Navbar className='navbar_render' bg={darkTheme == true ? "dark" : "light"} variant={darkTheme == true ? "dark" : "light"}>
+        <Container >
           <Navbar.Brand href="/">
             <img
               alt=""
@@ -26,7 +30,7 @@ export default function Navigation () {
             Gita GPT
           </Navbar.Brand>
           <Nav.Link>
-            <Button variant='light' onClick={handleTheme}>Dark</Button>
+            <Button variant='light' onClick={toggleTheme}>Dark</Button>
           </Nav.Link>
         </Container>
       </Navbar>

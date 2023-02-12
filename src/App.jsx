@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes, Router} from "react-router-dom"
 import Home from './pages/Home'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navbar'
+import { ThemeProvider } from './components/ThemeContext'
 
 
 function App() {
@@ -12,10 +13,12 @@ function App() {
 
   return (
     <BrowserRouter>
+    <ThemeProvider>
     <Navigation />
       <Routes>
         <Route element={<Home />} exact path="/"></Route>
       </Routes>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }

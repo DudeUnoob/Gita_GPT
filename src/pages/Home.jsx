@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { Button, Card, Container, Form, InputGroup, Row, Spinner, Col } from "react-bootstrap"
-
+import { ThemeContext, ThemeProvider, useTheme, useThemeUpdate } from "../components/ThemeContext";
 import { callApi } from '../functions/api';
 import "../public/Home.css"
 
 
 export default function Home() {
+    const darkTheme = useTheme()
+    const toggleTheme = useThemeUpdate()
 
     const inputText = useRef(null)
     const [messageValue, setMessageValue] = useState(null)
@@ -69,7 +71,7 @@ export default function Home() {
                         required
                         onKeyDown={(e) => e.code == "Enter" ? handleCallGPT() : ""}
                     />
-                    <Button id="button-addon1" onClick={handleCallGPT} disabled={loading}>
+                    <Button id="button-addon1" onClick={handleCallGPT} disabled={loading} variant={darkTheme == true ? "dark" : "primary"}>
                         Send
                     </Button>
 
@@ -94,9 +96,9 @@ export default function Home() {
                             return (
 
                                 <Col key={i} lg="auto">
-                                    <Card onClick={() => inputText.current.value = elm}>
+                                    <Card onClick={() => inputText.current.value = elm} bg={darkTheme == true ? "dark" : "light"} >
                                         <Card.Body>
-                                            <Card.Title>{elm}</Card.Title>
+                                            <Card.Title style={{color: darkTheme == true ? "white" : "black"}}>{elm}</Card.Title>
                                         </Card.Body>
                                     </Card>
                                 </Col>
