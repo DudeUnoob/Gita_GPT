@@ -138,29 +138,29 @@ export default function Home() {
 </footer> */}
 
 <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
+  <div className="container">
+    <div className="row">
+      <div className="col-md-4">
         <h5>About Me/This</h5>
         <p>In February of 2023 I decided to make a website </p>
         <p>dedicated to a free open Gita AI 📔</p>
         <p><b>Created by: <a href="https://github.com/DudeUnoob" target={"_blank"}>@dom✌</a></b></p>
       </div>
-      <div class="col-md-4">
+      <div className="col-md-4">
         <h5>Check Me Out!</h5>
-        <p><i class="fa fa-linkedin" ></i> <a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target={"_blank"}>Linkedin</a></p>
-        <p><i class="fa fa-github" style={{paddingRight:"5px"}}></i><a href="https://github.com/DudeUnoob" target={"_blank"}>Github</a></p>
-        <p><i class="fa fa-envelope"></i> techdomprogramming@gmail.com</p>
+        <p><i className="fa fa-linkedin" ></i> <a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target={"_blank"}>Linkedin</a></p>
+        <p><i className="fa fa-github" style={{paddingRight:"5px"}}></i><a href="https://github.com/DudeUnoob" target={"_blank"}>Github</a></p>
+        <p><i className="fa fa-envelope"></i> techdomprogramming@gmail.com</p>
       </div>
-      <div class="col-md-4">
+      <div className="col-md-4">
         <h5>Follow Me</h5>
-        {/* <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a> */}
-        <a href="https://twitter.com/DudeUnoob69" target={"_blank"}><i class="fa fa-twitter-square fa-2x"></i></a>
-        <a href="https://www.instagram.com/damodar_kamanii/" target={"_blank"}><i class="fa fa-instagram fa-2x"></i></a>
+        {/* <a href="#"><i className="fa fa-facebook-square fa-2x"></i></a> */}
+        <a href="https://twitter.com/DudeUnoob69" target={"_blank"}><i className="fa fa-twitter-square fa-2x"></i></a>
+        <a href="https://www.instagram.com/damodar_kamanii/" target={"_blank"}><i className="fa fa-instagram fa-2x"></i></a>
       </div>
     </div>
     <hr />
-    <p class="text-center">Copyright © 2023 Gita GPT</p>
+    <p className="text-center">Copyright © 2023 Gita GPT</p>
   </div>
 </footer>
 
