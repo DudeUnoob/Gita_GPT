@@ -66,10 +66,19 @@ export default function Home() {
 
 
   }
+  
+
+
+  useEffect(() => {
+    
+      const element = document.getElementById("scrollable")
+      element.scrollTop = element.scrollHeight;
+    
+  }, [messageValue])
 
   const getStorage = JSON.parse(window.localStorage.getItem("scrolling_chat_history"))
 
-
+  
   const loadingStyleState = { visibility: loading == true ? "visible" : "hidden" }
   const secondLoadingStyleState = { display: loading == true ? "inline-block" : "none" }
 
@@ -139,7 +148,7 @@ export default function Home() {
   </div>
 </footer> */}
       <div className="containerScroll">
-        <div className="scrollable">
+        <div className="scrollable" id="scrollable">
           {getStorage?.map((elm, i) => {
             return (
               <div key={i} className="chat-container">
