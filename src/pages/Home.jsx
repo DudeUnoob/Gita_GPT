@@ -140,13 +140,13 @@ export default function Home() {
 </footer> */}
       <div className="containerScroll">
         <div className="scrollable">
-          {getStorage.map((elm, i) => {
+          {getStorage?.map((elm, i) => {
             return (
               <div key={i} className="chat-container">
-                <div className='chat-message human_chat' style={{ float: "right" }}>
+                <div className='chat-message human_chat'>
                   <p className='message'>{elm.chat.Human}</p>
                 </div>
-                <div className="chat-message ai_chat" style={{ float: "left" }}>
+                <div className="chat-message ai_chat">
                   <p className='message'>{elm.chat.AI}</p>
                 </div>
 
