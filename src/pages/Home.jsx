@@ -147,8 +147,8 @@ export default function Home() {
     </div>
   </div>
 </footer> */}
-      <div className="containerScroll">
-        <div className="scrollable" id="scrollable">
+      <div className="containerScroll" style={{backgroundColor: darkTheme == true ? "#333" : "white"}}>
+        <div className="scrollable" id="scrollable" style={{backgroundColor: darkTheme == true ? "#333" : "white"}}>
           {getStorage?.map((elm, i) => {
             return (
               <div key={i} className="chat-container">
@@ -187,26 +187,26 @@ export default function Home() {
           </Row>
         </Container>
 
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4">
+      <footer style={{backgroundColor: darkTheme == true ? "#333" : "white", color:darkTheme == true ? "white" : "black", borderTop: darkTheme == true ? "" : "1px solid"}}>
+        <div className="container" style={{backgroundColor: darkTheme == true ? "#333" : "white", color:darkTheme == true ? "white" : "black"}}>
+          <div className="row" style={{color:darkTheme == true ? "white" : "black"}}>
+            <div className="col-md-4" style={{color:darkTheme == true ? "white" : "black"}}>
               <h5>About Me/This</h5>
               <p>In February of 2023 I decided to make a website </p>
               <p>dedicated to a free open Gita AI 📔</p>
-              <p><b>Created by: <a href="https://github.com/DudeUnoob" target={"_blank"}>@dom✌</a></b></p>
+              <p><b>Created by: <a href="https://github.com/DudeUnoob" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}>@dom✌</a></b></p>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4" style={{color:darkTheme == true ? "white" : "black"}}>
               <h5>Check Me Out!</h5>
-              <p><i className="fa fa-linkedin" ></i> <a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target={"_blank"}>Linkedin</a></p>
-              <p><i className="fa fa-github" style={{ paddingRight: "5px" }}></i><a href="https://github.com/DudeUnoob" target={"_blank"}>Github</a></p>
+              <p><i className="fa fa-linkedin" ></i> <a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}>Linkedin</a></p>
+              <p><i className="fa fa-github" style={{ paddingRight: "5px" }}></i><a href="https://github.com/DudeUnoob" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}>Github</a></p>
               <p><i className="fa fa-envelope"></i> techdomprogramming@gmail.com</p>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4" style={{color:darkTheme == true ? "white" : "black"}}>
               <h5>Follow Me</h5>
               {/* <a href="#"><i className="fa fa-facebook-square fa-2x"></i></a> */}
-              <a href="https://twitter.com/DudeUnoob69" target={"_blank"}><i className="fa fa-twitter-square fa-2x"></i></a>
-              <a href="https://www.instagram.com/damodar_kamanii/" target={"_blank"}><i className="fa fa-instagram fa-2x"></i></a>
+              <a href="https://twitter.com/DudeUnoob69" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}><i className="fa fa-twitter-square fa-2x" style={{color:darkTheme == true ? "white" : "black"}}></i></a>
+              <a href="https://www.instagram.com/damodar_kamanii/" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}><i className="fa fa-instagram fa-2x" style={{color:darkTheme == true ? "white" : "black"}}></i></a>
             </div>
           </div>
           <hr />
