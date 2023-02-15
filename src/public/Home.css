@@ -45,5 +45,51 @@ footer a:hover {
   }
 }
 
+.containerScroll {
+  height: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 55%;
+  margin: auto;
+  border-radius: 10px;
+  background-color: #333;
+}
 
+.scrollable {
+  height: 100%;
+  overflow: auto;
+  background-color: #333;
+}
+
+.chat-container {
+ 
+  padding: 10px;
   
+
+}
+
+.chat-message {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.human_chat {
+  justify-content: flex-end;
+}
+
+.human_chat .message {
+  background-color: #1982FC;
+  border-radius: 10px 10px 0 10px;
+  
+}
+
+.ai_chat .message{
+  background-color: 	#d8d8d8;
+  border-radius: 10px 10px 10px 0;
+}
+
+.message {
+  padding: 5px;
+  font-weight: 500;
+}
+
