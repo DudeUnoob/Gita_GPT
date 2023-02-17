@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useContext } from 'react';
-import { Button, Card, Container, Form, InputGroup, Row, Spinner, Col } from "react-bootstrap"
+import { Button, Card, Container, Form, InputGroup, Row, Spinner, Col, Modal } from "react-bootstrap"
 import { ThemeContext, ThemeProvider, useTheme, useThemeUpdate } from "../components/ThemeContext";
 import { callApi } from '../functions/api';
 import "../public/Home.css"
@@ -9,6 +9,7 @@ import "../public/Home.css"
 export default function Home() {
   const darkTheme = useTheme()
   const toggleTheme = useThemeUpdate()
+  const [show, setShow] = useState(false)
 
   const inputText = useRef(null)
   const [messageValue, setMessageValue] = useState(null)
@@ -67,7 +68,20 @@ export default function Home() {
 
   }
   
+ const handleModalShow = () => {
+  setShow(true)
+ }
 
+ const handleModalClose = () => {
+  setShow(false)
+  
+ }
+
+ const handleChatTrash = () => {
+  window.localStorage.removeItem("chat_history")
+  window.localStorage.removeItem("scrolling_chat_history")
+  setShow(false)
+ }
 
   useEffect(() => {
     
@@ -147,7 +161,21 @@ export default function Home() {
     </div>
   </div>
 </footer> */}
+<Modal show={show} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Chat Conversation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete your chat history?</Modal.Body>
+        <Modal.Footer>
+        <Button variant="danger" onClick={handleModalClose}>Cancel</Button>
+          <Button variant="primary" onClick={handleChatTrash}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div className="containerScroll" style={{backgroundColor: darkTheme == true ? "#333" : "white"}}>
+      <Button id="trash-icon" onClick={handleModalShow}><i className='fa fa-trash' aria-hidden="true" style={{fontSize:"18px"}}></i></Button>
         <div className="scrollable" id="scrollable" style={{backgroundColor: darkTheme == true ? "#333" : "white"}}>
           {getStorage?.map((elm, i) => {
             return (
