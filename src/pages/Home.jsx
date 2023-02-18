@@ -67,32 +67,32 @@ export default function Home() {
 
 
   }
-  
- const handleModalShow = () => {
-  setShow(true)
- }
 
- const handleModalClose = () => {
-  setShow(false)
-  
- }
+  const handleModalShow = () => {
+    setShow(true)
+  }
 
- const handleChatTrash = () => {
-  window.localStorage.removeItem("chat_history")
-  window.localStorage.removeItem("scrolling_chat_history")
-  setShow(false)
- }
+  const handleModalClose = () => {
+    setShow(false)
+
+  }
+
+  const handleChatTrash = () => {
+    window.localStorage.removeItem("chat_history")
+    window.localStorage.removeItem("scrolling_chat_history")
+    setShow(false)
+  }
 
   useEffect(() => {
-    
-      const element = document.getElementById("scrollable")
-      element.scrollTop = element.scrollHeight;
-    
+
+    const element = document.getElementById("scrollable")
+    element.scrollTop = element.scrollHeight;
+
   }, [messageValue])
 
   const getStorage = JSON.parse(window.localStorage.getItem("scrolling_chat_history"))
 
-  
+
   const loadingStyleState = { visibility: loading == true ? "visible" : "hidden" }
   const secondLoadingStyleState = { display: loading == true ? "inline-block" : "none" }
 
@@ -109,7 +109,7 @@ export default function Home() {
       <div className="card_body">
 
 
-        <InputGroup className="mb-3" placeholder='Ask a question!' id="input_question">
+        {/* <InputGroup className="mb-3" placeholder='Ask a question!' id="input_question">
 
           <Form.Control
             aria-label="Example text with button addon"
@@ -132,8 +132,8 @@ export default function Home() {
             </Spinner>
           </div>
           <p id="answer_result"><b>{messageValue?.answer}</b></p>
-        </div>
-        
+        </div> */}
+
 
 
       </div>
@@ -161,80 +161,102 @@ export default function Home() {
     </div>
   </div>
 </footer> */}
-<Modal show={show} onHide={handleModalClose}>
+      <Modal show={show} onHide={handleModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Delete Chat Conversation</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete your chat history?</Modal.Body>
         <Modal.Footer>
-        <Button variant="danger" onClick={handleModalClose}>Cancel</Button>
+          <Button variant="danger" onClick={handleModalClose}>Cancel</Button>
           <Button variant="primary" onClick={handleChatTrash}>
             Confirm
           </Button>
         </Modal.Footer>
       </Modal>
 
-      <div className="containerScroll" style={{backgroundColor: darkTheme == true ? "#333" : "white"}}>
-      <Button id="trash-icon" onClick={handleModalShow}><i className='fa fa-trash' aria-hidden="true" style={{fontSize:"18px"}}></i></Button>
-        <div className="scrollable" id="scrollable" style={{backgroundColor: darkTheme == true ? "#333" : "white"}}>
-          {getStorage?.map((elm, i) => {
-            return (
-              <div key={i} className="chat-container">
-                <div className='chat-message human_chat'>
-                  <p className='message'>{elm.chat.Human}</p>
-                </div>
-                <div className="chat-message ai_chat">
-                  <p className='message'>{elm.chat.AI}</p>
-                </div>
+      <div className="containerScroll" style={{ backgroundColor: darkTheme == true ? "#333" : "white" }}>
+        <Button id="trash-icon" onClick={handleModalShow} style={{color: darkTheme==true ? "white" : "#333"}}><i className='fa fa-trash' aria-hidden="true" style={{ fontSize: "18px" }}></i></Button>
+        <div className="scrollable" id="scrollable" style={{ backgroundColor: darkTheme == true ? "#333" : "white" }}>
+          {
+            getStorage == null ? <div className='chat-container' style={{ height: "220px" }}></div>
+              : getStorage?.map((elm, i) => {
+                return (
+                  <div key={i} className="chat-container">
+                    <div className='chat-message human_chat'>
+                      <p className='message'>{elm.chat.Human}</p>
+                    </div>
+                    <div className="chat-message ai_chat">
+                      <p className='message'>{elm.chat.AI}</p>
+                    </div>
 
-              </div>
-            )
-          })}
+                  </div>
+                )
+              })}
+          <InputGroup className="mb-3" placeholder='Ask a question!' id="input_question" style={{ position: "sticky", bottom: "0", top: "0" }}>
+
+            <Form.Control
+              aria-label="Example text with button addon"
+              aria-describedby="basic-addon1"
+              placeholder='Ask any question related to the bhagavad gita!'
+              ref={inputText}
+              required
+              onKeyDown={(e) => e.code == "Enter" ? handleCallGPT() : ""}
+            />
+            <Button id="button-addon1" onClick={handleCallGPT} disabled={loading} variant={darkTheme == true ? "dark" : "primary"}>
+              {loading == true ? <Spinner animation='border' role={"status"} style={secondLoadingStyleState}
+                size="sm"
+              >
+                <span className='visually-hidden'>Loading...</span>
+              </Spinner> : "Send"}
+            </Button>
+
+          </InputGroup>
+
         </div>
       </div>
       <br />
-      <h2 style={{  textAlign:"center" }}>Example Questions</h2>
-        <br />
-        <br />
-        <Container className='sampleQuestions'>
-          <Row>
-            {["What's the purpose of life?", "What is 9.26?", "What is Karma Yoga?", "What is the soul?"].map((elm, i) => {
-              return (
+      <h2 style={{ textAlign: "center" }}>Example Questions</h2>
+      <br />
+      <br />
+      <Container className='sampleQuestions'>
+        <Row>
+          {["What's the purpose of life?", "What is 9.26?", "What is Karma Yoga?", "What is the soul?"].map((elm, i) => {
+            return (
 
-                <Col key={i} sm>
-                  <Card style={{ height: "10rem", marginBottom: "0.5rem" }} onClick={() => inputText.current.value = elm} bg={darkTheme == true ? "dark" : "light"} className="card">
-                    <Card.Body>
-                      <Card.Title style={{ color: darkTheme == true ? "white" : "black" }}>{elm}</Card.Title>
-                    </Card.Body>
-                  </Card>
-                </Col>
+              <Col key={i} sm>
+                <Card style={{ height: "10rem", marginBottom: "0.5rem" }} onClick={() => inputText.current.value = elm} bg={darkTheme == true ? "dark" : "light"} className="card">
+                  <Card.Body>
+                    <Card.Title style={{ color: darkTheme == true ? "white" : "black" }}>{elm}</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Col>
 
-              )
+            )
 
-            })}
-          </Row>
-        </Container>
+          })}
+        </Row>
+      </Container>
 
-      <footer style={{backgroundColor: darkTheme == true ? "#333" : "white", color:darkTheme == true ? "white" : "black", borderTop: darkTheme == true ? "" : "1px solid"}}>
-        <div className="container" style={{backgroundColor: darkTheme == true ? "#333" : "white", color:darkTheme == true ? "white" : "black"}}>
-          <div className="row" style={{color:darkTheme == true ? "white" : "black"}}>
-            <div className="col-md-4" style={{color:darkTheme == true ? "white" : "black"}}>
+      <footer style={{ backgroundColor: darkTheme == true ? "#333" : "white", color: darkTheme == true ? "white" : "black", borderTop: darkTheme == true ? "" : "1px solid" }}>
+        <div className="container" style={{ backgroundColor: darkTheme == true ? "#333" : "white", color: darkTheme == true ? "white" : "black" }}>
+          <div className="row" style={{ color: darkTheme == true ? "white" : "black" }}>
+            <div className="col-md-4" style={{ color: darkTheme == true ? "white" : "black" }}>
               <h5>About Me/This</h5>
               <p>In February of 2023 I decided to make a website </p>
               <p>dedicated to a free open Gita AI 📔</p>
-              <p><b>Created by: <a href="https://github.com/DudeUnoob" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}>@dom✌</a></b></p>
+              <p><b>Created by: <a href="https://github.com/DudeUnoob" target={"_blank"} style={{ color: darkTheme == true ? "white" : "black" }}>@dom✌</a></b></p>
             </div>
-            <div className="col-md-4" style={{color:darkTheme == true ? "white" : "black"}}>
+            <div className="col-md-4" style={{ color: darkTheme == true ? "white" : "black" }}>
               <h5>Check Me Out!</h5>
-              <p><i className="fa fa-linkedin" ></i> <a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}>Linkedin</a></p>
-              <p><i className="fa fa-github" style={{ paddingRight: "5px" }}></i><a href="https://github.com/DudeUnoob" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}>Github</a></p>
+              <p><i className="fa fa-linkedin" ></i> <a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target={"_blank"} style={{ color: darkTheme == true ? "white" : "black" }}>Linkedin</a></p>
+              <p><i className="fa fa-github" style={{ paddingRight: "5px" }}></i><a href="https://github.com/DudeUnoob" target={"_blank"} style={{ color: darkTheme == true ? "white" : "black" }}>Github</a></p>
               <p><i className="fa fa-envelope"></i> techdomprogramming@gmail.com</p>
             </div>
-            <div className="col-md-4" style={{color:darkTheme == true ? "white" : "black"}}>
+            <div className="col-md-4" style={{ color: darkTheme == true ? "white" : "black" }}>
               <h5>Follow Me</h5>
               {/* <a href="#"><i className="fa fa-facebook-square fa-2x"></i></a> */}
-              <a href="https://twitter.com/DudeUnoob69" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}><i className="fa fa-twitter-square fa-2x" style={{color:darkTheme == true ? "white" : "black"}}></i></a>
-              <a href="https://www.instagram.com/damodar_kamanii/" target={"_blank"} style={{color:darkTheme == true ? "white" : "black"}}><i className="fa fa-instagram fa-2x" style={{color:darkTheme == true ? "white" : "black"}}></i></a>
+              <a href="https://twitter.com/DudeUnoob69" target={"_blank"} style={{ color: darkTheme == true ? "white" : "black" }}><i className="fa fa-twitter-square fa-2x" style={{ color: darkTheme == true ? "white" : "black" }}></i></a>
+              <a href="https://www.instagram.com/damodar_kamanii/" target={"_blank"} style={{ color: darkTheme == true ? "white" : "black" }}><i className="fa fa-instagram fa-2x" style={{ color: darkTheme == true ? "white" : "black" }}></i></a>
             </div>
           </div>
           <hr />
