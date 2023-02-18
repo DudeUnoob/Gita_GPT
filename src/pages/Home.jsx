@@ -68,6 +68,9 @@ export default function Home() {
 
   }
 
+  
+
+
   const handleModalShow = () => {
     setShow(true)
   }
@@ -92,7 +95,6 @@ export default function Home() {
 
   const getStorage = JSON.parse(window.localStorage.getItem("scrolling_chat_history"))
 
-
   const loadingStyleState = { visibility: loading == true ? "visible" : "hidden" }
   const secondLoadingStyleState = { display: loading == true ? "inline-block" : "none" }
 
@@ -110,7 +112,6 @@ export default function Home() {
 
 
         {/* <InputGroup className="mb-3" placeholder='Ask a question!' id="input_question">
-
           <Form.Control
             aria-label="Example text with button addon"
             aria-describedby="basic-addon1"
@@ -122,9 +123,7 @@ export default function Home() {
           <Button id="button-addon1" onClick={handleCallGPT} disabled={loading} variant={darkTheme == true ? "dark" : "primary"}>
             Send
           </Button>
-
         </InputGroup>
-
         <div className="answers">
           <div className="loadingState">
             <Spinner animation='border' role={"status"} style={secondLoadingStyleState}>
@@ -179,7 +178,15 @@ export default function Home() {
         <div className="scrollable" id="scrollable" style={{ backgroundColor: darkTheme == true ? "#333" : "white" }}>
           {
             getStorage == null ? <div className='chat-container' style={{ height: "220px" }}></div>
-              : getStorage?.map((elm, i) => {
+              : getStorage.length == 1 ? <div className='chat-container' style={{ height: "220px"}}>
+                
+                <div className="chat-message human_chat">
+                  <p className='message'>{getStorage[0].chat.Human}</p>
+                </div>
+                <div className='chat-message ai_chat'>
+                  <p className='message'>{getStorage[0].chat.AI}</p>
+                </div>
+              </div> : getStorage?.map((elm, i) => {
                 return (
                   <div key={i} className="chat-container">
                     <div className='chat-message human_chat'>
