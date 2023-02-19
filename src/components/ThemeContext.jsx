@@ -15,8 +15,14 @@ export function useThemeUpdate(){
 
 export function ThemeProvider({ children }) {
     const [darkTheme, setDarkTheme] = useState(() => {
-        const storedTheme = localStorage.getItem("theme");
-        return storedTheme !== null ? JSON.parse(storedTheme) : false
+        try {
+            const storedTheme = localStorage.getItem("theme");
+        
+            return storedTheme !== null  ? JSON.parse(storedTheme) : false
+        } catch(e) {
+            
+        }
+        
     })
 
    useEffect(() => {
