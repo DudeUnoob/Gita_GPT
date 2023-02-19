@@ -14,7 +14,14 @@ export function useThemeUpdate(){
 }
 
 export function ThemeProvider({ children }) {
-    const [darkTheme, setDarkTheme] = useState(true)
+    const [darkTheme, setDarkTheme] = useState(() => {
+        const storedTheme = localStorage.getItem("theme");
+        return storedTheme !== null ? JSON.parse(storedTheme) : false
+    })
+
+   useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(darkTheme))
+   }, [darkTheme])
    
     function toggleTheme () {
         setDarkTheme(prevDarkTheme => !prevDarkTheme)
