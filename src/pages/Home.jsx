@@ -184,7 +184,7 @@ export default function Home() {
                   <p className='message'>{getStorage[0].chat.Human}</p>
                 </div>
                 <div className='chat-message ai_chat'>
-                  <p className='message'>{getStorage[0].chat.AI}</p>
+                  <p className='message' dangerouslySetInnerHTML={{ __html: getStorage[0].chat.AI }}></p>
                 </div>
               </div> : getStorage?.map((elm, i) => {
                 return (
@@ -195,7 +195,7 @@ export default function Home() {
 
                     </div>
                     <div className="chat-message ai_chat">
-                      <p className='message' dangerouslySetInnerHTML={{ __html: `<div>${elm.chat.AI}</div>`}}></p>
+                      <p className='message' dangerouslySetInnerHTML={{ __html: elm.chat.AI }}></p>
                     </div>
 
                   </div>
