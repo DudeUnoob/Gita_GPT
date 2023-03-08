@@ -195,7 +195,7 @@ export default function Home() {
 
                     </div>
                     <div className="chat-message ai_chat">
-                      <p className='message' dangerouslySetInnerHTML={{ __html: elm.chat.AI}}></p>
+                      <p className='message' dangerouslySetInnerHTML={{ __html: `<div>${elm.chat.AI}</div>`}}></p>
                     </div>
 
                   </div>
