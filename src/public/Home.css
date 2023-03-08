@@ -95,6 +95,9 @@ padding: 5px;
 font-weight: 500;
 }
 
+i {
+  font-size: 12px;
+}
 
 @media only screen and (max-width: 600px) {
 .containerScroll {

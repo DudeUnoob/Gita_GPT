@@ -5,7 +5,6 @@ import { callApi } from '../functions/api';
 import "../public/Home.css"
 
 
-
 export default function Home() {
   const darkTheme = useTheme()
   const toggleTheme = useThemeUpdate()
@@ -45,7 +44,7 @@ export default function Home() {
       window.localStorage.setItem("scrolling_chat_history", JSON.stringify(finalScrollingChatArr))
       window.localStorage.setItem("chat_history", JSON.stringify(finalArr))
 
-
+      updateCommandCount(1)
 
     } else {
       setMessageValue(null)
@@ -64,7 +63,8 @@ export default function Home() {
         [testScrollingObj]
       ))
     }
-
+    
+    updateCommandCount(1)
 
   }
 
@@ -191,9 +191,11 @@ export default function Home() {
                   <div key={i} className="chat-container">
                     <div className='chat-message human_chat'>
                       <p className='message'>{elm.chat.Human}</p>
+                  
+
                     </div>
                     <div className="chat-message ai_chat">
-                      <p className='message'>{elm.chat.AI}</p>
+                      <p className='message' dangerouslySetInnerHTML={{ __html: elm.chat.AI}}></p>
                     </div>
 
                   </div>
